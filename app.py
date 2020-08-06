@@ -29,22 +29,26 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('re-sample.html')
-
-@app.route('/resample', methods=['GET', 'POST'])
-def resample():
     soxDataTarget = os.path.join(APP_ROUTE, 'soxData')
     dataTarget = os.path.join(APP_ROUTE, 'data')
     if not os.path.isdir(soxDataTarget):
         os.mkdir(soxDataTarget)
     else:
-        files = glob.glob(soxDataTarget+'/*')
-        for file in files:
-            os.remove(file)
+        files = glob.glob(soxDataTarget + '/*')
+        if files:
+            for file in files:
+                os.remove(file)
     if os.path.isdir(dataTarget):
-        files = glob.glob(dataTarget + '/*')
-        for file in files:
-            os.remove(file)
+        dataFiles = glob.glob(dataTarget + '/*')
+        if dataFiles:
+            for file in dataFiles:
+                os.remove(file)
+    return render_template('re-sample.html')
+
+@app.route('/resample', methods=['GET', 'POST'])
+def resample():
+    soxDataTarget = os.path.join(APP_ROUTE, 'soxData')
+
     for file in request.files.getlist('wavFiles'):
         filename=file.filename
         destination="/".join([soxDataTarget, filename])
@@ -52,15 +56,12 @@ def resample():
     os.system('./resample.sh -s 16000 -r soxData/ -w data/')
     return render_template('align.html')
 
-@app.route('/resample/upload', methods=['GET', 'POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    dataTarget=os.path.join(APP_ROUTE, 'data')
-    if not os.path.isdir(dataTarget):
-        os.mkdir(dataTarget)
-
-    for file in request.files.getlist('files'):
-        filename=file.filename
-        destination="/".join([dataTarget, filename])
+    dataTarget = os.path.join(APP_ROUTE, 'data')
+    for file in request.files.getlist('labs'):
+        filename = file.filename
+        destination = "/".join([dataTarget, filename])
         file.save(destination)
 
     config=request.files["config"]
@@ -115,7 +116,7 @@ def upload():
         logging.info("Success!")
         return render_template('complete.html')
 
-@app.route('/return-files', methods=['GET'])
+@app.route('/oov_file', methods=['GET'])
 def return_file():
     return send_from_directory(directory=os.getcwd(), filename='OOV.txt', as_attachment=True)
 
@@ -131,7 +132,6 @@ def download_textgrids():
                      mimetype='zip',
                      attachment_filename='Name.zip',
                      as_attachment=True)
-    #return send_from_directory(directory=(os.getcwd()+'/data'), filename='scores.csv', as_attachment=True)
 
 if __name__=="__main__":
     app.debug = True
