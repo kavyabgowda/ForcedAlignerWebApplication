@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+</head>
+<body>
+<h1>
+    File Uploader
+</h1>
+<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+    <div>
+        <label>
+            upload lab and wav files:
+        </label>
+        <input type="file" name="files" accept=".wav,.lab" multiple>
+    </div>
+
+    <div>
+        <label>
+            upload yaml files:
+        </label>
+        <input type="file" name="config" accept=".yaml">
+    </div>
+    <div>
+        <label>
+            upload dict:
+        </label>
+        <input type="file" name="dict" accept=".dict">
+    </div>
+
+
+    <input type="submit" value="Upload Files">
+</form>
+</body>
+</html>

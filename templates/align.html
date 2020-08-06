@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Forced Aligner</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+  $(document).ready(function () {
+    $('.nav ul li:first').addClass('active');
+    $('.tab-content:not(:first)').hide();
+    $('.nav ul li a').click(function (event) {
+        event.preventDefault();
+        var content = $(this).attr('href');
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+        $(content).show();
+        $(content).siblings('.tab-content').hide();
+    });
+});
+  </script>
+    <script type="text/javascript">
+window.onload = function() {
+    document.getElementById('mylink').onclick = function() {
+        document.getElementById('myform').submit();
+        return false;
+    };
+};
+</script>
+
+  <style>
+
+.nav {
+    line-height:30px;
+    background-color:#CCCCFF;
+    height:450px;
+    width:300px;
+    float:left;
+    padding:5px;
+	border-radius: 10px
+}
+.active {
+    font-weight:bold;
+}
+.section {
+    width:350px;
+    float:left;
+}
+  </style>
+    <link rel="shortcut icon" href="#" />
+</head>
+<body>
+<div class="container" style="padding-top:10px">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header" style="align:center">
+      <a class="navbar-brand" style="color:white;text-align:center">MULTISIMOL Dataset Forced Aligner</a>
+    </div>
+  </div>
+</nav>
+</div>
+<div class="nav">
+    <ul style="padding-top:100px">
+        <li style="visibility: hidden"><a href="#section-resample" style="font-family:Helvetica Neue;font-size:16px;color:#083d8d">Step 1: Re-Sample Audio Files</a></li>
+	<br>
+
+        <li><a href="#section-align" style="font-family:Helvetica Neue;font-size:16px;color:#083d8d">Step 2: Upload Transcripts and Align</a></li>
+    </ul>
+</div>
+<div id="section-resample" class="tab-content" align="left" style="padding-top: 20px;padding-bottom: 20px;">
+	   <label style="font-size:16px; font-weight:bold;padding-left:100px">Successfully Resampled Audio files to 16kHz:</label>
+	      <!--<input type="button" id="button-id" style="margin-left: 200px;margin-top:30px" class="btn btn-primary btn-lg" value="Re-Sample"></input>
+	--></form>
+</div>
+<div id="section-align" class="tab-content" align="left" style="padding-top: 20px;padding-bottom: 20px">
+    <form id="myform" action="{{ url_for('upload')}}" method="POST" enctype="multipart/form-data">
+     <div>
+        <label>
+            upload lab and wav files:
+        </label>
+        <input type="file" name="files" accept=".lab" multiple>
+    </div>
+
+    <div>
+        <label>
+            upload yaml files:
+        </label>
+        <input type="file" name="config" accept=".yaml">
+    </div>
+    <div>
+        <label>
+            upload dict:
+        </label>
+        <input type="file" name="dict" accept=".dict">
+    </div>
+
+     <a href="#" id="mylink"> Upload </a></form>
+</form>
+
+</div>
+<div class="container" style="padding-bottom:30px"></div>
+<div class="container" >
+<nav class="navbar navbar-inverse" style="text-align:center;color:white;padding-top:12px">
+<p>Copyright © Trinity College Dublin 2020</p>
+</nav>
+</div>
+</body>
+</html>
