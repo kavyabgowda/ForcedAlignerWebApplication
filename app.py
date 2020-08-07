@@ -94,11 +94,11 @@ def upload():
     aligner.curdir = archive.dirname
 
     #Removing existing OOV txt file
-    if os.path.exists(os.getcwd()+'OOV.txt'):
+    if os.path.exists(os.getcwd()+'/OOV.txt'):
         os.remove(os.getcwd()+'/OOV.txt')
     #HDMan
     corpus = Corpus(os.getcwd()+'/data/', opts)
-    if os.path.exists(os.getcwd()+'OOV.txt'):
+    if os.path.exists(os.getcwd()+'/OOV.txt'):
         return render_template('downloads.html')
     else:
         logging.info("Aligning corpus '{}'.".format(os.getcwd() + '/data/'))
@@ -116,21 +116,21 @@ def upload():
         logging.info("Success!")
         return render_template('complete.html')
 
-@app.route('/oov_file', methods=['GET'])
-def return_file():
+@app.route('/return_OOV_file', methods=['GET'])
+def return_OOV_file():
     return send_from_directory(directory=os.getcwd(), filename='OOV.txt', as_attachment=True)
 
 
 @app.route('/download_textgrids', methods=['GET'])
 def download_textgrids():
-    zipf = zipfile.ZipFile('Name.zip', 'w', zipfile.ZIP_DEFLATED)
+    zipf = zipfile.ZipFile('ForcedAlignerOutput.zip', 'w', zipfile.ZIP_DEFLATED)
     for root, dirs, files in os.walk('data/'):
         for file in files:
             zipf.write('data/' + file)
     zipf.close()
-    return send_file('Name.zip',
+    return send_file('ForcedAlignerOutput.zip',
                      mimetype='zip',
-                     attachment_filename='Name.zip',
+                     attachment_filename='ForcedAlignerOutput.zip',
                      as_attachment=True)
 
 if __name__=="__main__":

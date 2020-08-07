@@ -1,76 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Forced Aligner</title>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script>
-  $(document).ready(function () {
-    $('.nav ul li:first').addClass('active');
-    $('.tab-content:not(:first)').hide();
-    $('.nav ul li a').click(function (event) {
-        event.preventDefault();
-        var content = $(this).attr('href');
-        $(this).parent().addClass('active');
-        $(this).parent().siblings().removeClass('active');
-        $(content).show();
-        $(content).siblings('.tab-content').hide();
-    });
-});
-  </script>
-    <script type="text/javascript">
-window.onload = function() {
-    document.getElementById('mylink').onclick = function() {
-        document.getElementById('myform').submit();
-        return false;
-    };
-};
-</script>
-
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
-
+    <title>Forced Aligner</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
     <link rel="shortcut icon" href="#" />
 </head>
-<body class="container">
-<div style="padding-top:10px">
-<nav class="navbar navbar-inverse">
-  <div>
-    <div class="navbar-header" style="align:center">
-      <a class="navbar-brand" style="color:white;text-align:center">MULTISIMOL Dataset Forced Aligner</a>
-    </div>
-  </div>
-</nav>
-</div>
-<div class="nav">
-    <ul style="padding-top:100px">
-        <li><a href="#section-resample" style="font-family:Helvetica Neue;font-size:16px;color:#083d8d">Step 1: Re-Sample Audio Files</a></li>
-	<br>
 
-        <li style="visibility: hidden"><a href="#section-align" style="font-family:Helvetica Neue;font-size:16px;color:#083d8d;">Step 2: Upload Transcripts and Align</a></li>
-    </ul>
-</div>
-<div id="section-resample" class="tab-content" align="left" style="padding-top: 20px;padding-bottom: 20px;">
-	<form id="myform" action="{{ url_for('resample')}}" method="POST" enctype="multipart/form-data">
-    <label style="font-size:16px; font-weight:bold;padding-left:100px">Choose .Wav Files to Re-Sample to 16kHz:</label>
-	<p><p>
-    <input type="file" name="wavFiles" accept=".wav" multiple style="padding-left:100px">
-	 <a href="#" id="mylink" style="margin-left: 200px;margin-top:30px" class="btn btn-primary btn-lg"> submit </a>
-        <!--<input type="button" id="button-id" style="margin-left: 200px;margin-top:30px" class="btn btn-primary btn-lg" value="Re-Sample"></input>
-	-->
-    </form>
-</div>
-<div id="section-align" class="tab-content">
-    <h2>Successfully Resampled Audio files to 16kHz</h2>
-</div>
-<div style="padding-bottom:30px"></div>
-<div>
-<nav class="navbar navbar-inverse" style="text-align:center;color:white;padding-top:12px">
-<p>Copyright © Trinity College Dublin 2020</p>
-</nav>
-</div>
+<body class="container">
+    <header class="mt-3">
+        <nav class="border-radius-10 navbar navbar-dark bg-dark box-shadow d-flex justify-content-center">
+            <div class="navbar-brand">MULTISIMOL Dataset Forced Aligner</div>
+        </nav>
+    </header>
+    <div class="row mx-0 my-2">
+        <section class="border-radius-10 sidebar-content col-4 p-0">
+            <ul class="mt-5">
+                <li class="active"><!--<a href="#section-resample">-->Step 1: Re-Sample Audio Files<!--</a>--></li>
+                <li class="d-none"><!--<a href="#section-align">-->Step 2: Upload Transcripts and Align<!--</a>--></li>
+            </ul>
+        </section>
+        <section class="file-upload-content col-8 mt-5">
+            <form id="myform" action="{{ url_for('resample')}}" method="POST" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="wavFiles" accept=".wav" multiple
+                            id="wavFileUpload">
+                        <label class="custom-file-label" for="wavFileUpload">
+                            Choose .wav files to re-sample to 16kHz</label>
+                    </div>
+                </div>
+                <button id="mylink" type="submit" class="btn btn-primary w-25 font-weight-bold text-light">Re-Sample</button>
+
+            </form>
+            <div id="section-align" class="tab-content d-none">
+                <h2>Successfully Resampled Audio files to 16kHz</h2>
+            </div>
+        </section>
+    </div>
+    <footer class="border-radius-10 container footer bg-dark text-light mb-3">
+        <div class="text-center">
+            <span>Copyright &copy; Trinity College Dublin</span>
+        </div>
+    </footer>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="scripts.js"></script>
+
 </html>

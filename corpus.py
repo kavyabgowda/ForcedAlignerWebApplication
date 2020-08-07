@@ -91,9 +91,9 @@ class Corpus(object):
         print(labelfiles)
         self.audiofiles = audiofiles
         self._prepare_label(labelfiles)
-        self._prepare_audio(audiofiles)
-        self._extract_features()
-
+        if not os.path.exists(os.getcwd() + '/OOV.txt'):
+            self._prepare_audio(audiofiles)
+            self._extract_features()
 
     def _prepare_label(self, labelfiles):
         """
@@ -134,38 +134,39 @@ class Corpus(object):
             with open(OOV, "w") as oov:
                 print("\n".join(sorted(self.thedict.oov)), file=oov)
             logging.error("OOV word(s): see '{}'.".format(OOV))
-            exit(1)
+            #exit(1)
         # make words
-        with open(self.words, "w") as words:
-            print("\n".join(found_words), file=words)
-        # create temp file to abuse
-        temp = os.path.join(self.tmpdir, TEMP)
-        # run HDMan
-        with open(temp, "w") as ded:
-            print("""AS {0}\nMP {1} {1} {0}
-""".format(SP, SIL), file=ded)
-        check_call(["HDMan", "-m",
-                             "-g", temp,
-                             "-w", self.words,
-                             "-n", self.phons,
-                             self.taskdict] +self.dictionary
-                   )
-        # add SIL to phone list
-        with open(self.phons, "a") as phons:
-            print(SIL, file=phons)
-        # add SIL to taskdict
-        with open(self.taskdict, "a") as taskdict:
-            print("{0} {0}".format(SIL), file=taskdict)
-        # run HLEd
-        with open(temp, "w") as led:
-            print("""EX
-IS {0} {0}
-DE {1}
-""".format(SIL, SP), file=led)
-        check_call(["HLEd", "-l", self.labdir,
-                            "-d", self.taskdict,
-                            "-i", self.phon_mlf,
-                            temp, self.word_mlf])
+        else:
+            with open(self.words, "w") as words:
+                print("\n".join(found_words), file=words)
+            # create temp file to abuse
+            temp = os.path.join(self.tmpdir, TEMP)
+            # run HDMan
+            with open(temp, "w") as ded:
+                print("""AS {0}\nMP {1} {1} {0}
+    """.format(SP, SIL), file=ded)
+            check_call(["HDMan", "-m",
+                                 "-g", temp,
+                                 "-w", self.words,
+                                 "-n", self.phons,
+                                 self.taskdict] +self.dictionary
+                       )
+            # add SIL to phone list
+            with open(self.phons, "a") as phons:
+                print(SIL, file=phons)
+            # add SIL to taskdict
+            with open(self.taskdict, "a") as taskdict:
+                print("{0} {0}".format(SIL), file=taskdict)
+            # run HLEd
+            with open(temp, "w") as led:
+                print("""EX
+    IS {0} {0}
+    DE {1}
+    """.format(SIL, SP), file=led)
+            check_call(["HLEd", "-l", self.labdir,
+                                "-d", self.taskdict,
+                                "-i", self.phon_mlf,
+                                temp, self.word_mlf])
 
 
     def _prepare_audio(self, audiofiles):

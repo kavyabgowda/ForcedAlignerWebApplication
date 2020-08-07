@@ -1,16 +1,24 @@
-.nav {
-    line-height:30px;
-    background-color:#CCCCFF;
-    height:450px;
-    width:300px;
-    float:left;
-    padding:5px;
-	border-radius: 10px
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
 }
-.active {
-    font-weight:bold;
+
+.sidebar-content{
+    height: calc(100vh - 155px);
+    background-color: #CCCCFF;
 }
-.section {
-    width:350px;
-    float:left;
+
+ul li{
+    font-family: Helvetica Nuea;
+    font-size: 16px;
+    color: #083d8d;
 }
+
+.border-radius-10{
+    border-radius: 10px;
+}
+
+
