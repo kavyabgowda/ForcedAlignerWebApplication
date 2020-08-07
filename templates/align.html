@@ -32,7 +32,7 @@
                 <div class="input-group mb-3">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="labs" accept=".lab" multiple
-                            id="labFileUpload">
+                            id="labFileUpload" required>
                         <label class="custom-file-label" for="labFileUpload">
                             Upload transcript file(s) (.lab) for the re-sampled audio file(s)</label>
                     </div>
@@ -40,7 +40,7 @@
                 <div class="input-group mb-3">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="config" accept=".yaml" multiple
-                            id="yamlFileUpload">
+                            id="yamlFileUpload" required>
                         <label class="custom-file-label" for="yamlFileUpload">
                             Upload configuration file (.yaml)</label>
                     </div>
@@ -48,13 +48,13 @@
                 <div class="input-group mb-3">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="dict" accept=".dict" multiple
-                            id="dictFileUpload">
+                            id="dictFileUpload" required>
                         <label class="custom-file-label" for="dictFileUpload">
                             Upload dictionary file (.dict)</label>
                     </div>
                 </div>
                 <button id="mylink" type="submit"
-                    class="btn btn-primary w-25 font-weight-bold text-light">Upload</button>
+                    class="btn btn-primary w-25 font-weight-bold text-light">Align Files</button>
 
             </form>
         </section>
