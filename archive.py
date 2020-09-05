@@ -1,9 +1,7 @@
 import os
 from tempfile import mkdtemp
 from shutil import copy, rmtree, make_archive, unpack_archive
-import sys
 
-from .utilities import mkdir_p
 
 FORMAT = "zip"
 

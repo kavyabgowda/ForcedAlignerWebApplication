@@ -1,3 +1,5 @@
+####Author: Kavya Bhadre Gowda######
+
 from flask import Flask, render_template, request, send_from_directory
 import shutil
 import zipfile
@@ -53,7 +55,7 @@ def resample():
         filename=file.filename
         destination="/".join([soxDataTarget, filename])
         file.save(destination)
-    os.system('./resample.sh -s 16000 -r soxData/ -w data/')
+    os.system('./sox-resample.sh -s 16000 -r soxData/ -w data/')
     return render_template('align.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
