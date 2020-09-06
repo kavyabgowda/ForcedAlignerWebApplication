@@ -44,28 +44,28 @@ The FLASK Web application starts by running 'app.py' using any IDE or through te
 
 <p align="center">Figure 1: Forced Aligner Resampling Audio Files</p>
 <p align="center">
-  <img src="resample.PNG" width="550" height="350" alt="accessibility text">
+  <img src="resample.PNG" width="700" height="350" alt="accessibility text">
 </p>
 
 
 
 <p align="center">Figure 2: Forced Alignment</p>
 <p align="center">
-  <img src="align.PNG" width="550" height="350" alt="accessibility text">
+  <img src="align.PNG" width="700" height="350" alt="accessibility text">
 </p>
 
 
 
 <p align="center">Figure 3: Download the Aligned Zip</p>
 <p align="center">
-  <img src="download.PNG" width="550" height="350" alt="accessibility text">
+  <img src="download.PNG" width="700" height="350" alt="accessibility text">
 </p>
 
 
 
 <p align="center">Figure 4: Download Out-of-Vocabulary word file</p>
 <p align="center">
-  <img src="download_oov.PNG" width="550" height="350" alt="accessibility text">
+  <img src="download_oov.PNG" width="700" height="350" alt="accessibility text">
 </p>
 
 
