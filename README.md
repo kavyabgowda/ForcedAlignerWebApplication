@@ -42,28 +42,32 @@ SoX is the "Swiss Army knife of sound processing programs", and can be used to r
 ----
 The FLASK Web application starts by running 'app.py' using any IDE or through terminal. On the start of the FLASK server the application can be accessed with the localhost URL from the browser. The web application looks like as shown in the Figure 1. The user is provided with option to upload the wav files, lab files, config and dictionary file to perform automated alignment of speech with the transcripts as in Figure 2. Missing words pronunciations in the Dictionary file will be available for download as in Figure 4 and the user can update the pronunciation in the dictionary and Restart the alignment process. On successful completion of the alignment process the users are provided with download zip option button to get the output file as in Figure 3.
 
+<p align="center">Figure 1: Forced Aligner Resampling Audio Files</p>
 <p align="center">
-  <img src="resample.PNG" width="500" height="400" alt="accessibility text">
+  <img src="resample.PNG" width="550" height="350" alt="accessibility text">
 </p>
-<p align="center">Forced Aligner Resampling Audio Files</p>
 
 
+
+<p align="center">Figure 2: Forced Alignment</p>
 <p align="center">
-  <img src="align.PNG" width="500" height="400" alt="accessibility text">
+  <img src="align.PNG" width="550" height="350" alt="accessibility text">
 </p>
-<p align="center">Forced Alignment</p>
 
 
+
+<p align="center">Figure 3: Download the Aligned Zip</p>
 <p align="center">
-  <img src="download.PNG" width="500" height="400" alt="accessibility text">
+  <img src="download.PNG" width="550" height="350" alt="accessibility text">
 </p>
-<p align="center">Download the Aligned Zip</p>
 
 
+
+<p align="center">Figure 4: Download Out-of-Vocabulary word file</p>
 <p align="center">
-  <img src="download_oov.PNG" width="500" height="400" alt="accessibility text">
+  <img src="download_oov.PNG" width="550" height="350" alt="accessibility text">
 </p>
-<p align="center">Download Out-of-Vocabulary word file</p>
+
 
 ### Contributions
 ----
